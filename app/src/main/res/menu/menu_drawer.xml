@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_pictures"
+            android:checked="true"
+            android:icon="@drawable/ic_picture_in_picture_white_24px"
+            android:title="Pictures" />
+        <item
+            android:id="@+id/drawer_fovorite"
+            android:icon="@drawable/ic_favorite_white_24px"
+            android:title="Favorite" />
+    </group>
+
+    <group
+        android:id="@+id/menu_review"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_review"
+            android:icon="@drawable/ic_rate_review_white_24px"
+            android:title="Left feedback" />
+    </group>
+
+    <group
+        android:id="@+id/menu_settings"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_settings"
+            android:icon="@drawable/ic_settings_white_24px"
+            android:title="Settings" />
+    </group>
+</menu>
