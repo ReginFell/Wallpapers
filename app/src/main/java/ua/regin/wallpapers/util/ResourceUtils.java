@@ -1,4 +1,4 @@
-package ua.regin.wallpapers.utils;
+package ua.regin.wallpapers.util;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

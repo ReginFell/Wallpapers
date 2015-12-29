@@ -1,9 +1,9 @@
 package ua.regin.wallpapers.application;
 
-import ua.regin.wallpapers.injectors.components.AppComponent;
-import ua.regin.wallpapers.injectors.components.DaggerAppComponent;
-import ua.regin.wallpapers.injectors.modules.ApiModule;
-import ua.regin.wallpapers.injectors.modules.AppModule;
+import ua.regin.wallpapers.injector.components.AppComponent;
+import ua.regin.wallpapers.injector.components.DaggerAppComponent;
+import ua.regin.wallpapers.injector.modules.ApiModule;
+import ua.regin.wallpapers.injector.modules.AppModule;
 
 public class Application extends android.app.Application {
 

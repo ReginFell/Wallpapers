@@ -1,4 +1,4 @@
-package ua.regin.wallpapers.injectors.modules;
+package ua.regin.wallpapers.injector.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +38,7 @@ public class ApiModule {
     public OkHttpClient provideOkHttpClient() {
         OkHttpClient client = new OkHttpClient();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client.interceptors().add(interceptor);
         return client;
     }

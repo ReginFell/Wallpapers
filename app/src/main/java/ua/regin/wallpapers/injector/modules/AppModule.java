@@ -1,4 +1,4 @@
-package ua.regin.wallpapers.injectors.modules;
+package ua.regin.wallpapers.injector.modules;
 
 import android.content.Context;
 

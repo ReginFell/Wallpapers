@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import ua.regin.wallpapers.R;
-import ua.regin.wallpapers.utils.ResourceUtils;
+import ua.regin.wallpapers.util.ResourceUtils;
 
 public class AppIntroFragment extends RxFragment {
 
