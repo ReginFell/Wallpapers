@@ -1,4 +1,4 @@
-package ua.regin.wallpapers.ui.image;
+package ua.regin.wallpapers.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,10 +11,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import ua.regin.wallpapers.R;
-import ua.regin.wallpapers.ui.BaseActivity;
+import ua.regin.wallpapers.ui.image.ImagePageFragment_;
+import ua.regin.wallpapers.ui.navigation.impl.BaseNavigationActivity;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseNavigationActivity {
 
     @ViewById
     protected NavigationView navigationView;
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
     public void setToolbar(Toolbar toolbar, int titleId) {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

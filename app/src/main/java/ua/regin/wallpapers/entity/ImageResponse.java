@@ -1,6 +1,8 @@
 package ua.regin.wallpapers.entity;
 
-public class ImageResponse {
+import java.io.Serializable;
+
+public class ImageResponse implements Serializable{
 
     private long id;
     private int height;

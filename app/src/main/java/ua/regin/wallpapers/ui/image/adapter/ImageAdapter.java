@@ -18,15 +18,21 @@ import ua.regin.wallpapers.entity.ImageResponse;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
     private final Context context;
+    private final Callbacks callbacks;
     private List<ImageResponse> imageList;
 
-    public ImageAdapter(Context context) {
+    public ImageAdapter(Context context, Callbacks callbacks) {
         this.context = context;
+        this.callbacks = callbacks;
     }
 
     public void setImageList(List<ImageResponse> imageList) {
         this.imageList = imageList;
         notifyDataSetChanged();
+    }
+
+    public List<ImageResponse> getImageList() {
+        return imageList;
     }
 
     @Override
@@ -38,13 +44,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ImageResponse image = imageList.get(position);
+        ImageResponse imageResponse = imageList.get(position);
 
         ColorDrawable drawable = new ColorDrawable();
         drawable.setColor(context.getResources().getColor(android.R.color.darker_gray));
 
-        Picasso.with(context).load(image.getImage().getPreview().getUrl()).placeholder(drawable)
+        Picasso.with(context).load(imageResponse.getImage().getPreview().getUrl()).placeholder(drawable)
                 .fit().centerCrop().into(holder.imageView);
+
+        holder.setOnClickListener(v -> callbacks.onClick(imageResponse));
     }
 
     @Override
@@ -56,13 +64,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         return size;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imageView;
+        private View.OnClickListener onClickListener;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            itemView.setOnClickListener(this);
         }
+
+        public void setOnClickListener(View.OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            onClickListener.onClick(v);
+        }
+    }
+
+    public interface Callbacks {
+        void onClick(ImageResponse imageResponse);
     }
 }

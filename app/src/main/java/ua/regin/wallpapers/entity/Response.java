@@ -9,8 +9,4 @@ public class Response {
     public List<ImageResponse> getResponse() {
         return response;
     }
-
-    public void setResponse(List<ImageResponse> response) {
-        this.response = response;
-    }
 }

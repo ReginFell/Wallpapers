@@ -21,9 +21,18 @@ public class ImageManager implements IImageManager {
         this.api = api;
     }
 
+    private Observable<List<ImageResponse>> imageResponseObserver;
+
     @Override
     public Observable<List<ImageResponse>> getImageList() {
-        return api.getImageList().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).map(this::unwrapResponse);
+        if (imageResponseObserver == null) {
+            imageResponseObserver = api.getImageList()
+                    .map(this::unwrapResponse)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .cache();
+        }
+        return imageResponseObserver;
     }
 
     private List<ImageResponse> unwrapResponse(Response response) {

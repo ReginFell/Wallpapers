@@ -71,4 +71,8 @@ dependencies {
 
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    //Parallax viewPager
+    compile 'com.xgc1986.android:parallaxpagertransformer:1.0.3'
+
 }

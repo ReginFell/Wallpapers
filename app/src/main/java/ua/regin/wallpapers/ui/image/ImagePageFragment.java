@@ -10,6 +10,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,12 +19,13 @@ import ua.regin.wallpapers.R;
 import ua.regin.wallpapers.application.Application;
 import ua.regin.wallpapers.entity.ImageResponse;
 import ua.regin.wallpapers.manager.IImageManager;
-import ua.regin.wallpapers.ui.BaseFragment;
 import ua.regin.wallpapers.ui.image.adapter.ImageAdapter;
+import ua.regin.wallpapers.ui.image.details.ImageDetailsPagerFragment_;
+import ua.regin.wallpapers.ui.navigation.impl.BaseNavigableFragment;
 
 @EFragment(R.layout.fragment_image_page)
 @OptionsMenu(R.menu.menu_shufle)
-public class ImagePageFragment extends BaseFragment {
+public class ImagePageFragment extends BaseNavigableFragment implements ImageAdapter.Callbacks {
 
     @Inject
     protected IImageManager imageManager;
@@ -44,18 +46,26 @@ public class ImagePageFragment extends BaseFragment {
 
     @AfterViews
     protected void afterViews() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setToolbar(toolbar, R.string.image_fragment_title);
+        getNavigableActivity().setToolbar(toolbar, R.string.image_fragment_title);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ImageAdapter(getContext());
+        adapter = new ImageAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
+    }
 
-        imageManager.getImageList().subscribe(this::updateImageData, this::handleError);
+    @Override
+    public void onResume() {
+        super.onResume();
+        imageManager.getImageList().compose(bindToLifecycle()).subscribe(this::updateImageData, this::handleError);
     }
 
     private void updateImageData(List<ImageResponse> imageList) {
         adapter.setImageList(imageList);
+    }
+
+    @Override
+    public void onClick(ImageResponse imageResponse) {
+        getNavigableActivity().switchFragmentInternal(ImageDetailsPagerFragment_.builder().build());
     }
 }

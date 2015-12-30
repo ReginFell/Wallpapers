@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -37,6 +39,8 @@ public class ApiModule {
     @Singleton
     public OkHttpClient provideOkHttpClient() {
         OkHttpClient client = new OkHttpClient();
+        client.setConnectTimeout(1000, TimeUnit.MINUTES);
+        client.setReadTimeout(1000, TimeUnit.MINUTES);
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client.interceptors().add(interceptor);

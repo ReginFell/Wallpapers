@@ -1,6 +1,8 @@
 package ua.regin.wallpapers.entity;
 
-public class PreviewImage {
+import java.io.Serializable;
+
+public class PreviewImage implements Serializable {
 
     private String url;
     private int height;
