@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
 
 android {
     compileOptions {
@@ -74,5 +75,8 @@ dependencies {
 
     //Parallax viewPager
     compile 'com.xgc1986.android:parallaxpagertransformer:1.0.3'
+
+    //Kotlin
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.14.449'
 
 }

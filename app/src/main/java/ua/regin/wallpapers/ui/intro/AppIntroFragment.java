@@ -86,7 +86,7 @@ public class AppIntroFragment extends RxFragment {
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-        i.setImageDrawable(ResourceUtils.getDrawable(getActivity(), drawable));
+        i.setImageDrawable(ResourceUtils.Helper.create().getDrawable(getActivity(), drawable));
         m.setBackgroundColor(bgColor);
         return v;
     }
